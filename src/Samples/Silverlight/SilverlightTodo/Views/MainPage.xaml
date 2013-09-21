@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="SilverlightTodo.Views.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:SilverlightTodo.ViewModels"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="400" 
+             d:DataContext="{d:DesignInstance viewModels:MainPageViewModel}">
+
+    <StackPanel x:Name="MainPageRoot">
+      <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+        <Button AutomationProperties.AutomationId=":AddTask"
+                Content="New Task" Command="{Binding AddTaskCommand}" />
+      </StackPanel>
+      
+      <ListBox AutomationProperties.AutomationId=":Tasks" ItemsSource="{Binding Tasks}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <!-- As data-bound TextBlocks are not accessible 
+                 we use the Task.ToString() way to provide a 
+                 name for the list entries. -->
+            <Grid AutomationProperties.Name="{Binding}" Height="30">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+
+              <Button Grid.RowSpan="2" Content="Delete" Margin="0,0,5,0"
+                      AutomationProperties.AutomationId=":Delete"
+                      Command="{Binding DataContext.DeleteTaskCommand, ElementName=MainPageRoot}"
+                      CommandParameter="{Binding}" />
+
+              <TextBlock Text="{Binding Title}" Grid.Column="1" />
+              <TextBlock Text="{Binding Description}" Grid.Row="1" Grid.Column="1" />
+              
+            </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </StackPanel>
+</UserControl>
