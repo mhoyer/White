@@ -84,6 +84,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SimpleHostWindow.cs" />
+    <Compile Include="SimpleHostFactory.cs" />
+    <Compile Include="SimpleHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FirefoxFactory.cs" />
     <Compile Include="BrowserWindow.cs" />
@@ -104,6 +107,10 @@
     <None Include="white.snk" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TestStack.White.WebBrowser.SimpleBrowser\TestStack.White.WebBrowser.SimpleBrowser.csproj">
+      <Project>{f85c4f90-0c1e-4f61-a97e-9c5cb8500945}</Project>
+      <Name>TestStack.White.WebBrowser.SimpleBrowser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestStack.White\TestStack.White.csproj">
       <Project>{12C59CE2-9CF7-44F4-B27C-90754609F979}</Project>
       <Name>TestStack.White</Name>

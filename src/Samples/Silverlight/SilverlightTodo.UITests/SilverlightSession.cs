@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using TestStack.White;
+using TestStack.White.Configuration;
 using TestStack.White.ScreenObjects.Services;
 using TestStack.White.ScreenObjects.Sessions;
 using TestStack.White.WebBrowser;
@@ -24,12 +25,11 @@ namespace SilverlightTodo.UITests
         
         public void Open(string url, string windowTitle)
         {
-            Close(); // to prevent multiple browser windows
-
-            var ieWindowTitle = String.Format("{0} - Windows Internet Explorer", windowTitle);
-
-            Application = InternetExplorer.LaunchApplication(url);
-            BrowserWindow = InternetExplorer.GetWindow(Application, ieWindowTitle);
+            CoreAppXmlConfiguration.Instance.FindWindowTimeout = 3000;
+            
+            var simpleHost = SimpleHost.Launch(url, windowTitle);
+            Application = simpleHost.Application;
+            BrowserWindow = simpleHost.Window;
             
             var workConfig = new WorkConfiguration
             {
