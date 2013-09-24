@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightTodo.UITests", "
 		{F6215B41-E64C-46AE-8189-EF5F2E560C1C} = {F6215B41-E64C-46AE-8189-EF5F2E560C1C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStack.White.WebBrowser.SimpleBrowser", "TestStack.White.WebBrowser.SimpleBrowser\TestStack.White.WebBrowser.SimpleBrowser.csproj", "{F85C4F90-0C1E-4F61-A97E-9C5CB8500945}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{4C7D7B2E-27C3-45A5-ABFF-6881D9AEBBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7D7B2E-27C3-45A5-ABFF-6881D9AEBBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7D7B2E-27C3-45A5-ABFF-6881D9AEBBB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85C4F90-0C1E-4F61-A97E-9C5CB8500945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85C4F90-0C1E-4F61-A97E-9C5CB8500945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85C4F90-0C1E-4F61-A97E-9C5CB8500945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85C4F90-0C1E-4F61-A97E-9C5CB8500945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

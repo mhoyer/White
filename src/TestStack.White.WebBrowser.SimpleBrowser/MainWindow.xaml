@@ -1,0 +1,33 @@
+﻿<Window x:Class="TestStack.White.WebBrowser.SimpleBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:simpleBrowser="clr-namespace:TestStack.White.WebBrowser.SimpleBrowser"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance simpleBrowser:MainWindowViewModel}"
+        AutomationProperties.AutomationId="{x:Static simpleBrowser:Identifiers.Window}"
+        Title="{Binding Title}" SizeToContent="WidthAndHeight">
+    
+    <DockPanel LastChildFill="True">
+        <!-- Address bar -->
+        <Border DockPanel.Dock="Top" Padding="3"
+                Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+                BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
+                BorderThickness="0,0,0,2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label>Address:</Label>
+                <TextBox Grid.Column="1" Text="{Binding Location, Mode=TwoWay}" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <WebBrowser AutomationProperties.AutomationId="{x:Static simpleBrowser:Identifiers.WebBrowser}"
+                    simpleBrowser:WebBrowserUtility.BindableSource="{Binding Location, Mode=TwoWay}"
+                    Width="{Binding Width, Mode=TwoWay}"
+                    Height="{Binding Height, Mode=TwoWay}"/>
+    </DockPanel>
+</Window>
