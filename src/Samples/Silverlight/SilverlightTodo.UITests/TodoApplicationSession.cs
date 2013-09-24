@@ -13,7 +13,7 @@ namespace SilverlightTodo.UITests
             var testPage = String.Format("{0}\\SilverlightTodo.html", asmPath);
             var windowTitle = "SilverlightTodo";
             
-            Open(testPage, windowTitle); // will close automatically on Dispose()
+            Open(testPage, windowTitle);
         }
     }
     

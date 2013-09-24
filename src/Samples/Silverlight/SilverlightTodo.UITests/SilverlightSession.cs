@@ -44,14 +44,14 @@ namespace SilverlightTodo.UITests
 
         public void Close()
         {
-            Dispose();
+            if (WorkSession != null) WorkSession.Dispose();
+            if (BrowserWindow != null) BrowserWindow.Dispose();
+            if (Application != null) Application.Dispose();
         }
 
         public void Dispose()
         {
-            if (WorkSession != null) WorkSession.Dispose();
-            if (BrowserWindow != null) BrowserWindow.Dispose();
-            if (Application != null) Application.Dispose();
+            Close();
         }
 
         public void Initialize(Action action)
