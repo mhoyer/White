@@ -2,15 +2,17 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using TestStack.White.WebBrowser.Silverlight;
 
 namespace TestStack.White.WebBrowser
 {
     public class SimpleHost
     {
+        SilverlightDocument _silverlightDocument;
         public Application Application { get; set; }
         public SimpleHostWindow Window { get; set; }
-
-        SimpleHost(Application application, SimpleHostWindow window)
+        
+        public SimpleHost(Application application, SimpleHostWindow window)
         {
             Application = application;
             Window = window;
@@ -27,7 +29,7 @@ namespace TestStack.White.WebBrowser
             if (height.HasValue) argsBuilder.Append(" -h ").Append(height);
             if (top.HasValue) argsBuilder.Append(" -t ").Append(top);
             if (left.HasValue) argsBuilder.Append(" -l ").Append(left);
-            argsBuilder.Append(String.Format("\"{0}\"", url));
+            argsBuilder.Append(String.Format(" -u \"{0}\"", url));
 
             var processStartInfo = new ProcessStartInfo
             {
@@ -46,5 +48,15 @@ namespace TestStack.White.WebBrowser
             return new SimpleHost(application, window);
         }
 
+        public SilverlightDocument FindSilverlightDocument(bool force = false)
+        {
+            if (_silverlightDocument == null || force)
+            {
+                Window = (SimpleHostWindow) Application.GetWindow(Window.Title);
+                _silverlightDocument = Window.SilverlightDocument;
+            }
+
+            return _silverlightDocument;
+        }
     }
 }

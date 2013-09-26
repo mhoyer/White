@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using TestStack.White;
 using TestStack.White.Configuration;
 using TestStack.White.ScreenObjects.Services;
 using TestStack.White.ScreenObjects.Sessions;
@@ -12,24 +11,19 @@ namespace SilverlightTodo.UITests
     // TODO: maybe move to TestStack.White.WebBrowser.Silverlight ?
     public class SilverlightSession : IDisposable
     {
-        Application Application { get; set; }
-        BrowserWindow BrowserWindow { get; set; }
-        WorkSession WorkSession { get; set; }
-
         bool _initalized;
+        SimpleHost _simpleHost;
 
         public SilverlightDocument Document
         {
-            get { return BrowserWindow.SilverlightDocument; }
+            get { return _simpleHost.FindSilverlightDocument(); }
         }
         
         public void Open(string url, string windowTitle)
         {
             CoreAppXmlConfiguration.Instance.FindWindowTimeout = 3000;
             
-            var simpleHost = SimpleHost.Launch(url, windowTitle);
-            Application = simpleHost.Application;
-            BrowserWindow = simpleHost.Window;
+            _simpleHost = SimpleHost.Launch(url, windowTitle);
             
             var workConfig = new WorkConfiguration
             {
@@ -38,15 +32,14 @@ namespace SilverlightTodo.UITests
             };
             var nullEnv = new NullWorkEnvironment();
 
-            WorkSession = new WorkSession(workConfig, nullEnv);
-            WorkSession.Attach(Application);
+            var workSession = new WorkSession(workConfig, nullEnv);
+            workSession.Attach(_simpleHost.Application);
         }
 
         public void Close()
         {
-            if (WorkSession != null) WorkSession.Dispose();
-            if (BrowserWindow != null) BrowserWindow.Dispose();
-            if (Application != null) Application.Dispose();
+            if (_simpleHost == null) return;
+            if (_simpleHost.Application != null) _simpleHost.Application.Close();
         }
 
         public void Dispose()
