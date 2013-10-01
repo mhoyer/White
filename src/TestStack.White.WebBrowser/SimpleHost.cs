@@ -2,25 +2,34 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using TestStack.White.Factory;
 using TestStack.White.WebBrowser.Silverlight;
 
 namespace TestStack.White.WebBrowser
 {
     public class SimpleHost
     {
+        readonly string _windowTitle;
+        readonly InitializeOption _initializeOption;
         SilverlightDocument _silverlightDocument;
+
         public Application Application { get; set; }
         public SimpleHostWindow Window { get; set; }
         
-        public SimpleHost(Application application, SimpleHostWindow window)
+        public SimpleHost(Application application, string windowTitle, bool enableCaching = true)
         {
+            _windowTitle = windowTitle;
+            _initializeOption = InitializeOption.NoCache;
+            if (enableCaching) _initializeOption = _initializeOption.AndIdentifiedBy(_windowTitle);
+
             Application = application;
-            Window = window;
+            FindWindow();
         }
 
         public static SimpleHost Launch(string url, string windowTitle, 
             int? width = null, int? height = null,
-            int? top = null, int? left = null)
+            int? top = null, int? left = null,
+            bool enableCaching = true)
         {
             SimpleHostFactory.Plugin();
 
@@ -43,20 +52,24 @@ namespace TestStack.White.WebBrowser
             }
 
             var application = Application.Launch(processStartInfo);
-            var window = (SimpleHostWindow)application.GetWindow(windowTitle);
             
-            return new SimpleHost(application, window);
+            return new SimpleHost(application, windowTitle, enableCaching);
         }
 
         public SilverlightDocument FindSilverlightDocument(bool force = false)
         {
             if (_silverlightDocument == null || force)
             {
-                Window = (SimpleHostWindow) Application.GetWindow(Window.Title);
+                FindWindow();
                 _silverlightDocument = Window.SilverlightDocument;
             }
 
             return _silverlightDocument;
+        }
+
+        void FindWindow()
+        {
+            Window = (SimpleHostWindow)Application.GetWindow(_windowTitle, _initializeOption);
         }
     }
 }
