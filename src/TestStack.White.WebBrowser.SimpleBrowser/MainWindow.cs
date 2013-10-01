@@ -29,7 +29,7 @@ namespace TestStack.White.WebBrowser.SimpleBrowser
             locationBar.Name = Identifiers.LocationBar;
             browser.Name = Identifiers.WebBrowser;
 
-            browser.Navigated += (sender, args) => locationBar.Text = args.Url.ToString();
+            browser.Navigated += (s, a) => locationBar.Text = browser.Url.ToString();
             Load += OnLoad;
         }
 
