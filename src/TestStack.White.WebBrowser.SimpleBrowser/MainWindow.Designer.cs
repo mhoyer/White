@@ -41,7 +41,6 @@
             this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser.Location = new System.Drawing.Point(0, 35);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser.Name = "browser";
             this.browser.Size = new System.Drawing.Size(784, 527);
             this.browser.TabIndex = 0;
             this.browser.Url = new System.Uri("", System.UriKind.Relative);
@@ -61,10 +60,9 @@
             this.locationBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationBar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationBar.Location = new System.Drawing.Point(3, 3);
-            this.locationBar.Name = "locationBar";
             this.locationBar.Size = new System.Drawing.Size(778, 29);
             this.locationBar.TabIndex = 1;
-            this.locationBar.Text = "about:blank";
+            this.locationBar.Text = "";
             this.locationBar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LocationBar_KeyPress);
             // 
             // mainContent

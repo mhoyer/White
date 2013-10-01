@@ -26,6 +26,8 @@ namespace TestStack.White.WebBrowser.SimpleBrowser
         {
             InitializeComponent();
             Name = Identifiers.Window;
+            locationBar.Name = Identifiers.LocationBar;
+            browser.Name = Identifiers.WebBrowser;
 
             browser.Navigated += (sender, args) => locationBar.Text = args.Url.ToString();
             Load += OnLoad;

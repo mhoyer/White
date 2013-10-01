@@ -4,5 +4,6 @@ namespace TestStack.White.WebBrowser.SimpleBrowser
     {
         public const string Window = "SimpleHost.Window";
         public const string WebBrowser = "SimpleHost.WebBrowser";
+        public const string LocationBar = "SimpleHost.LocatioBar";
     }
 }

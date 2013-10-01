@@ -56,6 +56,11 @@ namespace TestStack.White.WebBrowser
             return new SimpleHost(application, windowTitle, enableCaching);
         }
 
+        public void NavigateTo(string url)
+        {
+            Window.Location = url;
+        }
+
         public SilverlightDocument FindSilverlightDocument(bool force = false)
         {
             if (_silverlightDocument == null || force)

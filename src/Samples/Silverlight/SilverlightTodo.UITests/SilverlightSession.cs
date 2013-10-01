@@ -36,6 +36,12 @@ namespace SilverlightTodo.UITests
             workSession.Attach(_simpleHost.Application);
         }
 
+
+        public void NavigateTo(string url)
+        {
+            _simpleHost.NavigateTo(url);
+        }
+
         public void Close()
         {
             if (_simpleHost == null) return;
